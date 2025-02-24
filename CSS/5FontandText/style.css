@@ -1,0 +1,62 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    line-height: 1.6;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+/* 1. Text Color */
+.text-color {
+    color: blue;
+}
+
+/* 2. Font Properties */
+.font-family {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.font-size {
+    font-size: 20px;
+}
+
+.font-weight {
+    font-weight: bold;
+}
+
+/* 3. Text Decoration */
+.text-decoration {
+    text-decoration: underline;
+}
+
+.multiple-decorations {
+    text-decoration: underline overline line-through;
+}
+
+/* 4. Text Alignment */
+.text-align {
+    text-align: center;
+}
+
+/* 5. Text Transformation */
+.text-transform {
+    text-transform: uppercase;
+}
+
+/* 6. Line Height */
+.line-height {
+    line-height: 1.8;
+}
+
+/* 7. Letter Spacing */
+.letter-spacing {
+    letter-spacing: 2px;
+}
+
+/* 8. Text Indentation */
+.text-indent {
+    text-indent: 30px;
+}
