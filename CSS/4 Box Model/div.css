@@ -1,0 +1,21 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+a {
+    color: white;
+    background-color: black;
+    border: 2px solid red;
+    margin: 5px;
+    padding: 5px;
+}
+
+a:hover {
+    background-color: yellow;
+}
+
+div {
+    background-color: orange;
+    height: 50px;
+}
