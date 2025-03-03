@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Absolute Position</title>
+    <style>
+        .container {
+            position: relative;
+            width: 400px;
+            height: 200px;
+            background-color: lightgray;
+            border: 2px solid black;
+            margin: 20px;
+        }
+
+        .box {
+            width: 100px;
+            height: 50px;
+            background-color: orange;
+            border: 2px solid darkorange;
+            position: absolute;
+            top: 20px;
+            left: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Position: Absolute</h2>
+    <p>The orange box is positioned 20px from the top and 50px from the left of its container.</p>
+    <div class="container">
+        <div class="box">Box 1</div>
+    </div>
+</body>
+</html>

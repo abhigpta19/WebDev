@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Grid</title>
+    <style>
+        .container {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            gap: 10px;
+            background-color: lightgray;
+            padding: 10px;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: teal;
+            color: white;
+            text-align: center;
+            line-height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Display: Grid</h2>
+    <p>Grid layout allows content to be placed in rows and columns.</p>
+    <div class="container">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+        <div class="box">4</div>
+        <div class="box">5</div>
+        <div class="box">6</div>
+    </div>
+</body>
+</html>

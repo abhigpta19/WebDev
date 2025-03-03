@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Sizing Units</title>
+  <style>
+    /* Root font size (affects rem) */
+    html {
+      font-size: 16px; /* Default browser font size */
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border: 2px solid black;
+      font-size: 1rem;
+      color: white;
+      font-weight: bold;
+    }
+
+    /* Absolute Sizing - px */
+    .px-box {
+      width: 200px;
+      height: 100px;
+      background-color: red;
+    }
+
+    /* rem - relative to root font-size (16px) */
+    .rem-box {
+      width: 10rem; /* 10 * 16px = 160px */
+      height: 5rem; /* 5 * 16px = 80px */
+      background-color: blue;
+    }
+
+    /* em - relative to parent element */
+    .em-box {
+      width: 10em; /* 10 times the font-size of parent (16px) */
+      height: 5em;
+      background-color: green;
+    }
+
+    /* % - relative to parent container */
+    .percent-box {
+      width: 50%;
+      height: 50px;
+      background-color: purple;
+    }
+
+    /* Viewport Width (vw) - relative to screen width */
+    .vw-box {
+      width: 50vw; /* 50% of the viewport width */
+      height: 100px;
+      background-color: orange;
+    }
+
+    /* Viewport Height (vh) - relative to screen height */
+    .vh-box {
+      width: 100px;
+      height: 50vh; /* 50% of the viewport height */
+      background-color: pink;
+    }
+
+    /* vmin - relative to the smaller viewport dimension */
+    .vmin-box {
+      width: 20vmin;
+      height: 20vmin;
+      background-color: cyan;
+    }
+
+    /* vmax - relative to the larger viewport dimension */
+    .vmax-box {
+      width: 20vmax;
+      height: 20vmax;
+      background-color: brown;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="box px-box">200px × 100px</div>
+  <div class="box rem-box">10rem × 5rem</div>
+  <div class="box em-box">10em × 5em</div>
+  <div class="box percent-box">50% width</div>
+  <div class="box vw-box">50vw width</div>
+  <div class="box vh-box">50vh height</div>
+  <div class="box vmin-box">20vmin</div>
+  <div class="box vmax-box">20vmax</div>
+</body>
+</html>
