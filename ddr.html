@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Touch Drag and Drop</title>
+  <style>
+    body {
+      background-color: black;
+      display: flex;
+      justify-content: space-around;
+      padding: 20px;
+      color: white;
+    }
+    .box {
+      width: 300px;
+      height: 500px;
+      border: 2px dashed white;
+      background-color: #111;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 10px;
+    }
+    .item {
+      width: 280px;
+      height: 80px;
+      background-color: yellow;
+      color: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      touch-action: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="box" id="box1">
+    <div class="item">Item 1</div>
+    <div class="item">Item 2</div>
+    <div class="item">Item 3</div>
+  </div>
+
+  <div class="box" id="box2">
+    <!-- Drop items here -->
+  </div>
+
+  <script>
+    let dragged = null;
+    let offsetX = 0;
+    let offsetY = 0;
+
+    const items = document.querySelectorAll('.item');
+
+    items.forEach(item => {
+      item.addEventListener('touchstart', function(e) {
+        dragged = this;
+        const touch = e.touches[0];
+        const rect = this.getBoundingClientRect();
+        offsetX = touch.clientX - rect.left;
+        offsetY = touch.clientY - rect.top;
+
+        this.style.position = 'absolute';
+        this.style.zIndex = 1000;
+      });
+
+      item.addEventListener('touchmove', function(e) {
+        if (!dragged) return;
+        const touch = e.touches[0];
+        dragged.style.left = (touch.clientX - offsetX) + 'px';
+        dragged.style.top = (touch.clientY - offsetY) + 'px';
+      });
+
+      item.addEventListener('touchend', function(e) {
+        const box2 = document.getElementById('box2');
+        const boxRect = box2.getBoundingClientRect();
+
+        const touch = e.changedTouches[0];
+        const x = touch.clientX;
+        const y = touch.clientY;
+
+        // Check if dropped inside box2
+        if (
+          x > boxRect.left &&
+          x < boxRect.right &&
+          y > boxRect.top &&
+          y < boxRect.bottom
+        ) {
+          box2.appendChild(dragged);
+        }
+
+        // Reset styles
+        dragged.style.position = '';
+        dragged.style.left = '';
+        dragged.style.top = '';
+        dragged.style.zIndex = '';
+        dragged = null;
+      });
+    });
+  </script>
+</body>
+</html>

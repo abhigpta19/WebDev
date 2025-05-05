@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Event Capturing</title>
+</head>
+<body>
+    <div id="grandparent" style="padding: 50px; background: lightcoral;">
+        Grandparent
+        <div id="parent" style="padding: 30px; background: lightblue;">
+            Parent
+            <div id="child" style="padding: 20px; background: lightgreen;">
+                Child
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("grandparent").addEventListener("click", function() {
+            alert("Grandparent Bubbling");
+        }); // Bubbling phase
+
+        document.getElementById("child").addEventListener("click", function() {
+            alert("Child Bubbling");
+        }); // Bubbling phase
+
+        document.getElementById("parent").addEventListener("click", function(e) {
+            
+            alert("Parent Bubbling");
+            e.stopPropagation();
+        }); // Bubbling phase
+
+
+
+
+        // document.getElementById("grandparent").addEventListener("click", function() {
+        //     alert("Grandparent Capturing");
+        // }, true); // Capturing phase
+
+        // document.getElementById("child").addEventListener("click", function() {
+        //     alert("Child Capturing");
+        // }, true); // Capturing phase
+
+        // document.getElementById("parent").addEventListener("click", async function(e) {
+        //     e.stopPropagation();
+        //     alert("Parent Capturing");
+        // },true); // Capturing phase
+
+
+        
+    </script>
+</body>
+</html>

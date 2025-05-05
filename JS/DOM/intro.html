@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .box {
+            border: 2px solid black;
+            padding: 10px;
+            margin: 5px;
+            display: inline-block;
+            background-color: lightgray;
+        }
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 id="main-heading">DOM Manipulation Example</h1>
+
+    <div id="container">
+        <div class="box">Box 1</div>
+        <div class="box">Box 2</div>
+        <div class="box">Box 3</div>
+    </div>
+
+    <button id="addBox">Add Box</button>
+    <button id="removeBox">Remove Last Box</button>
+    <button id="replaceBox">Replace Second Box</button>
+    <button id="highlightBoxes">Highlight Boxes</button>
+
+    <script>
+        // Selecting Elements
+        let heading = document.getElementById("main-heading");  // Select element by ID
+        let container = document.getElementById("container");
+        let boxes = document.getElementsByClassName("box");  // Select elements by class
+        let allDivs = document.getElementsByTagName("div");  // Select elements by tag name
+        let firstBox = document.querySelector(".box");  // Select first element by query
+        let allBoxes = document.querySelectorAll(".box");  // Select all elements by query
+
+        // Creating a New Element
+        let newBox = document.createElement("div");
+        newBox.classList.add("box");
+        newBox.innerText = "New Box";
+
+        // Append Child (Add new box at the end)
+        document.getElementById("addBox").addEventListener("click", function() {
+            let newBoxClone = newBox.cloneNode(true);
+            container.appendChild(newBoxClone);
+        });
+
+        // Remove Last Child
+        document.getElementById("removeBox").addEventListener("click", function() {
+            if (container.lastElementChild) {
+                container.removeChild(container.lastElementChild);
+            }
+        });
+
+        // Replace Child
+        document.getElementById("replaceBox").addEventListener("click", function() {
+            let replacementBox = document.createElement("div");
+            replacementBox.classList.add("box");
+            replacementBox.innerText = "Replaced Box";
+            if (container.children.length > 1) {
+                container.replaceChild(replacementBox, container.children[1]);
+            }
+        });
+
+        // Insert Before (Insert a box before the first one)
+        let insertBox = document.createElement("div");
+        insertBox.classList.add("box");
+        insertBox.innerText = "Inserted Box";
+        container.insertBefore(insertBox, container.firstElementChild);
+
+        // Modify Inner Text & Inner HTML
+        heading.innerText = "Updated DOM Example";  // Changes text
+        heading.innerHTML = "<span style='color:red'>Updated DOM Example</span>";  // Adds HTML inside
+
+        // Add/Remove Class
+        document.getElementById("highlightBoxes").addEventListener("click", function() {
+            allBoxes.forEach(box => box.classList.toggle("highlight"));
+        });
+
+        // Set & Get Attribute
+        heading.setAttribute("data-info", "This is a heading");
+        console.log("Heading Attribute:", heading.getAttribute("data-info"));
+
+        // Event Listener Example
+        heading.addEventListener("click", function() {
+            alert("You clicked the heading!");
+        });
+
+    </script>
+</body>
+</html>

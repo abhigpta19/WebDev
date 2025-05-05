@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: black;
+        }
+        .container{
+            display : flex;
+            gap: 10px;
+        }
+        .box{
+            display: flex;
+            flex-direction: column;
+            list-style : none;
+            gap : 10px;
+            background-color: aqua;
+            height : 800px;
+            width: 500px;
+            border: 2px solid white;
+        }
+        .item{
+            background-color: yellow;
+            border: 2px solid black;
+            width : 450px;
+            height : 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <ul class="box">
+            <li class="item">item1</li>
+            <li class="item">item2</li>
+            <li class="item">item3</li>
+            <li class="item">item4</li>
+        </ul>
+        <ul class="box"></ul>
+    </div>
+
+    <script>
+        const lbox = document.getElementsByClassName("box")[0];
+        const rbox = document.getElementsByClassName("box")[1];
+
+        lbox.addEventListener("dragover",function(e){
+            e.preventDefault();
+            console.log("Dragover");
+        })
+
+        lbox.addEventListener("dragend",function(e){
+            console.log("Dragend");
+        })
+
+        lbox.addEventListener("dragenter",function(e){
+            console.log("Dragenter");
+        })
+
+        lbox.addEventListener("dragleave",function(e){
+            console.log("Dragleave");
+        })
+
+        lbox.addEventListener("drop",function(e){
+            lbox.appendChild(document.getElementById("selected"));
+            console.log("Drop");
+        })
+
+
+        rbox.addEventListener("dragover",function(e){
+            e.preventDefault();
+            console.log("Dragover");
+        })
+
+        rbox.addEventListener("dragend",function(e){
+            console.log("Dragend");
+        })
+
+        rbox.addEventListener("dragenter",function(e){
+            console.log("Dragenter");
+        })
+
+        rbox.addEventListener("dragleave",function(e){
+            console.log("Dragleave");
+        })
+
+        rbox.addEventListener("drop",function(e){
+            rbox.appendChild(document.getElementById("selected"));
+            console.log("Drop");
+        })
+
+        for (const element of lbox.children) {
+            element.draggable = true;
+            
+            element.addEventListener("dragstart", function(e) {
+                e.target.id = "selected";
+                e.target.style.opacity = 0.5;
+                console.log("dragstart");
+             });
+
+             element.addEventListener("dragend", function(e) {
+                console.log("dragend");
+                e.target.style.opacity = 1;
+                e.target.id = null;
+             });
+
+             let offsetX=0;
+             let offsetY=0;
+             element.addEventListener("touchstart", function(e) {
+                e.target.id = "selected";
+                console.log("touchstart");
+
+                const touch = e.touches[0];
+                const rect = this.getBoundingClientRect();
+                offsetX = touch.clientX - rect.left;
+                offsetY = touch.clientY - rect.top;
+
+                this.style.position = 'absolute';
+                this.style.zIndex = 1000;
+             });
+
+             element.addEventListener("touchmove", function(e) {
+                e.preventDefault();
+                console.log("touchmove");
+                const dragged = document.getElementById("selected");
+                console.log(dragged);
+                if (!dragged) return;
+                const touch = e.touches[0];
+                dragged.style.left = (touch.clientX - offsetX) + 'px';
+                dragged.style.top = (touch.clientY - offsetY) + 'px';
+             });
+
+             element.addEventListener("touchend", function(e) {
+                console.log("touchend");
+                const dragged = e.target;
+
+                function fn(box)
+                {
+                    const boxRect = box.getBoundingClientRect();
+                    
+
+                    const touch = e.changedTouches[0];
+                    const x = touch.clientX;
+                    const y = touch.clientY;
+
+                    // Check if dropped inside box2
+                    if (
+                    x > boxRect.left &&
+                    x < boxRect.right &&
+                    y > boxRect.top &&
+                    y < boxRect.bottom
+                    ) {
+                    box.appendChild(dragged);
+                    }
+                }
+
+                fn(lbox);
+                fn(rbox);
+        
+                
+                dragged.style.position = '';
+                dragged.style.left = '';
+                dragged.style.top = '';
+                dragged.style.zIndex = '';
+                e.target.id = null;
+             });
+        }
+    </script>
+</body>
+</html>
