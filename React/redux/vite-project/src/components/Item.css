@@ -1,0 +1,13 @@
+.item-cont{
+    
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    
+}
+.parent{
+    flex : 3;
+    border : 2px solid black;
+    background-color: green;
+    margin : 5px;
+    padding : 5px;
+}

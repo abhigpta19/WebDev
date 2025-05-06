@@ -1,13 +1,15 @@
 import React from 'react'
 import './Cart.css'
-import { useContext } from 'react'
-import { CartContext } from '../contexts/CartContext'
+import { useDispatch, useSelector } from 'react-redux';
+import { removeFromCart , addQuantity, removeQuantity } from '../redux/slices/cartReducer';
 
 function Cart() {
-    const {cartPrice , cartItems , removeFromCart, addQuantity, removeQuantity} = useContext(CartContext);
+    const cartItems = useSelector(state => state.cart.cartItems);
+    const cartValue = useSelector(state => state.cart.cartValue);
+    const dispatch = useDispatch();
   return (
     <div className='cart-cont'>
-      <h1>Cart : ${cartPrice}</h1>
+      <h1>Cart : ${cartValue}</h1>
       {
         cartItems.map((item,idx)=>(
             <>
@@ -20,12 +22,12 @@ function Cart() {
                     <div style={{marginLeft : "auto"}}>
                         <h3>Quantity</h3>
                         <div>
-                        <button onClick={()=>addQuantity(item)}>+</button>
+                        <button onClick={()=>dispatch(addQuantity(item))}>+</button>
                         {item.quantity}
-                        <button onClick={()=>removeQuantity(item)}>-</button>
+                        <button onClick={()=>dispatch(removeQuantity(item))}>-</button>
                         </div>
                         <br/>
-                        <button onClick={()=>removeFromCart(item)}>Remove</button>
+                        <button onClick={()=>dispatch(removeFromCart(item))}>Remove</button>
                     </div>
                     
                 </div>

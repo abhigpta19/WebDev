@@ -5,7 +5,6 @@ export const CounterContext = createContext(null);
 
 export function CounterProvider({children})
 {
-    alert("this context rendered");
     const [count , setCount] = useState(0);
 
     const increament = ()=>{

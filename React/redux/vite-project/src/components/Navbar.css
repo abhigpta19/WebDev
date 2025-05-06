@@ -1,0 +1,14 @@
+.container{
+    display: flex;
+    margin:5px;
+    padding:5px;
+    border: 2px solid black;
+}
+.box{
+    padding: 5px;
+    margin: 5px;
+}
+
+#username{
+    margin-left: auto;
+}

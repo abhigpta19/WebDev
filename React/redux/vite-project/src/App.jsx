@@ -2,11 +2,10 @@ import React, { useCallback, useContext } from 'react'
 import Navbar from './components/Navbar'
 import MainBody from './components/MainBody'
 import Footer from './components/Footer'
-import { UserContext } from './contexts/UserContext'
 import Login from './components/Login';
 
 function App() {
-  const {name} = useContext(UserContext);
+  const name = "abhi";
   return (
     <div>
       <Navbar/>
